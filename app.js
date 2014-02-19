@@ -5,9 +5,7 @@ angular.module('myApp', [])
   };
   var apiKey = '6bf0a7b18ff0c5e480fd8dff6ea9bd9e';
   $scope.getPhotoUrl = function(photo) {
-    return "http://farm"+photo.farm+
-    ".static.flickr.com/"+photo.server+
-    "/"+photo.id+"_"+photo.secret+".jpg";
+    return "http://farm"+photo.farm+".static.flickr.com/"+photo.server+"/"+photo.id+"_"+photo.secret+".jpg";
   };
 
   $http({
@@ -18,10 +16,9 @@ angular.module('myApp', [])
       method: 'flickr.interestingness.getList',
       api_key: apiKey,
       format: 'json',
-      per_page: 3,
       nojsoncallback: 1
     }
   }).then(function(data) {
-    $scope.photos = data.data;
+    $scope.photos = data.data.photos.photo;
   });
 });
